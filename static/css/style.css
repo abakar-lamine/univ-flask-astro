@@ -183,3 +183,20 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(55, 48, 163, 0.4);
 }
+
+.description-container {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--astro-accent);
+}
+
+.lead {
+    text-align: justify;
+}

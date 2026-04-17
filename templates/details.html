@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block title %}Détails - {{ item.marque }} {{ item.modele }}{% endblock %}
+
+{% block content %}
+<div class="row mt-2 mb-5">
+    <div class="col-12 mb-4">
+        <a href="javascript:history.back()" class="text-decoration-none fw-bold" style="color: var(--astro-primary-light);">
+            <i class="bi bi-arrow-left me-2"></i>Retour à la liste
+        </a>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card border-0 overflow-hidden" style="box-shadow: var(--astro-card-shadow); border-radius: 20px;">
+            <img src="{{ url_for('static', filename='img/' + item.image_file) }}" 
+                 class="img-fluid w-100" 
+                 alt="{{ item.modele }}"
+                 style="max-height: 500px; object-fit: cover;"
+                 onerror="this.src='https://via.placeholder.com/600x400?text=Image+non+disponible'">
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="ps-lg-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item text-uppercase small fw-bold" style="color: var(--astro-accent);">{{ item.type_objet }}</li>
+                    <li class="breadcrumb-item active small fw-bold text-uppercase" aria-current="page">{{ item.categorie }}</li>
+                </ol>
+            </nav>
+
+            <h1 class="display-5 fw-bold mb-3" style="color: var(--astro-primary);">{{ item.marque }}</h1>
+            <h2 class="h3 mb-4 text-muted">{{ item.modele }}</h2>
+
+            <div class="d-flex align-items-center mb-4">
+                <div class="me-4">
+                    <span class="text-muted d-block small text-uppercase fw-bold">Note globale</span>
+                    <span class="fs-4">
+                        {% for i in range(item.score) %}⭐{% endfor %}
+                    </span>
+                </div>
+                <div class="border-start ps-4">
+                    <span class="text-muted d-block small text-uppercase fw-bold">Année de sortie</span>
+                    <span class="fs-4 fw-bold" style="color: var(--astro-primary-light);">{{ item.date_sortie }}</span>
+                </div>
+            </div>
+
+            <hr class="my-4 opacity-10">
+
+            <div class="description-container">
+                <h4 class="fw-bold mb-3" style="color: var(--astro-primary);">
+                    <i class="bi bi-info-circle me-2"></i>Résumé de l'expert
+                </h4>
+                <p class="lead text-secondary" style="line-height: 1.8; font-size: 1.1rem;">
+                    {{ item.resume if item.resume else "Aucun résumé n'est disponible pour cet article." }}
+                </p>
+            </div>
+
+            <div class="mt-5 d-grid gap-2 d-md-flex">
+                <button class="btn btn-primary btn-lg px-5 py-3 fw-bold" style="border-radius: 12px; background-color: var(--astro-primary-light); border: none;">
+                    <i class="bi bi-cart-plus me-2"></i>Ajouter au comparateur
+                </button>
+                <button class="btn btn-outline-secondary btn-lg px-4" style="border-radius: 12px;">
+                    <i class="bi bi-share"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
