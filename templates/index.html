@@ -3,20 +3,27 @@
 {% block title %}Accueil - AstroSpace{% endblock %}
 
 {% block content %}
-<div class="row mt-4">
-    <div class="col-12 text-center">
-        <div class="p-5 mb-4 rounded-3" style="background: linear-gradient(135deg, var(--astro-dark), #1e293b); color: white; box-shadow: var(--astro-card-shadow);">
-            <div class="container-fluid py-5">
-                <i class="bi bi-stars mb-3" style="font-size: 4rem; color: var(--astro-accent);"></i>
-                <h1 class="display-5 fw-bold">Bienvenue sur AstroSpace</h1>
-                <p class="col-md-8 mx-auto fs-5 mt-3 text-light opacity-75">
-                    Votre site communautaire dédié à l'astronomie. Explorez notre catalogue d'appareils photos, comparez les télescopes et admirez les photographies de la communauté.
-                </p>
-                <div class="d-flex justify-content-center gap-3 mt-4">
-                    <a href="{{ url_for('appareils_photos') }}" class="btn btn-outline-light btn-lg">Voir les Appareils</a>
-                    <a href="{{ url_for('telescopes') }}" class="btn btn-primary btn-lg" style="background-color: var(--astro-blue); border: none;">Voir les Téléscopes</a>
-                </div>
+<div class="row">
+    <div class="col-12">
+        <div class="hero-section text-center">
+            
+            <i class="bi bi-stars mb-3" style="font-size: 4rem; color: var(--astro-accent); filter: drop-shadow(0 0 15px rgba(199, 210, 254, 0.8));"></i>
+            
+            <h1 class="hero-title">Explorer l'Univers</h1>
+            
+            <p class="hero-subtitle col-md-8 mx-auto">
+                Bienvenue sur AstroSpace. Plongez dans l'observation des étoiles, explorez notre catalogue d'équipements spécialisés et partagez vos plus belles découvertes avec la communauté.
+            </p>
+            
+            <div class="d-flex justify-content-center flex-wrap gap-3 mt-2">
+                <a href="{{ url_for('appareils_photos') }}" class="btn btn-hero btn-hero-outline">
+                    <i class="bi bi-camera me-2"></i>Explorer les Appareils
+                </a>
+                <a href="{{ url_for('telescopes') }}" class="btn btn-hero btn-hero-primary">
+                    <i class="bi bi-telescope me-2"></i>Explorer les Téléscopes
+                </a>
             </div>
+            
         </div>
     </div>
 </div>

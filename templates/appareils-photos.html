@@ -3,51 +3,43 @@
 {% block title %}Appareils Photo - AstroSpace{% endblock %}
 
 {% block content %}
-<div class="mb-4 text-center">
-    <h2 class="fw-bold" style="color: var(--astro-blue);">
+<div class="mb-5 text-center">
+    <h2 class="fw-bold" style="color: var(--astro-primary-light);">
         <i class="bi bi-camera me-2"></i>Nos Appareils Photos
     </h2>
     <p class="text-muted">Découvrez notre sélection pour capturer le cosmos.</p>
 </div>
 
-{% set categories = ['Amateur', 'Amateur sérieux', 'Professionnel'] %}
-
-{% for cat in categories %}
-<div class="mb-5">
-    <h4 class="border-bottom pb-2 mb-3" style="color: var(--astro-dark);">Catégorie : {{ cat }}</h4>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        
-        {% set has_items = false %}
-        {% for item in items %}
-            {% if item.categorie == cat %}
-                {% set has_items = true %}
-                <div class="col">
-                    <div class="card h-100 border-0" style="box-shadow: var(--astro-card-shadow); border-radius: 12px;">
-                        <img src="{{ url_for('static', filename='img/' + item.image_file) }}" class="card-img-top" alt="{{ item.modele }}" style="height: 200px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;" onerror="this.src='https://via.placeholder.com/300x200?text=Pas+d%27image'">
-                        
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ item.marque }} - {{ item.modele }}</h5>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li><i class="bi bi-calendar-event text-secondary me-2"></i>Sortie : {{ item.date_sortie }}</li>
-                                <li>
-                                    <i class="bi bi-star-fill text-warning me-2"></i>Score : 
-                                    {% for i in range(item.score) %}⭐{% endfor %}
-                                </li>
-                            </ul>
-                            <a href="{{ url_for('details', id=item.id) }}" class="btn btn-outline-primary w-100 mt-auto" style="border-radius: 8px;">Voir les détails</a>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        
-        {% if not has_items %}
-            <div class="col-12">
-                <p class="text-muted fst-italic">Aucun appareil dans cette catégorie pour le moment.</p>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for item in items %}
+    <div class="col">
+        <div class="card h-100 border-0" style="box-shadow: var(--astro-card-shadow); border-radius: 15px; overflow: hidden; position: relative;">
+            
+            <span class="position-absolute top-0 end-0 m-3 badge" style="background-color: var(--astro-primary); font-size: 0.85rem; padding: 8px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); z-index: 10;">
+                {{ item.categorie }}
+            </span>
+            
+            <img src="{{ url_for('static', filename='img/' + item.image_file) }}" class="card-img-top" alt="{{ item.modele }}" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220?text=Pas+d%27image'">
+            
+            <div class="card-body d-flex flex-column p-4">
+                <h5 class="card-title fw-bold mb-3" style="color: var(--astro-primary);">{{ item.marque }} - {{ item.modele }}</h5>
+                
+                <ul class="list-unstyled mb-4 text-muted small">
+                    <li class="mb-2"><i class="bi bi-calendar-event me-2"></i>Date de sortie : <span class="fw-semibold">{{ item.date_sortie }}</span></li>
+                    <li>
+                        <i class="bi bi-star-fill text-warning me-2"></i>Score : 
+                        {% for i in range(item.score) %}⭐{% endfor %}
+                    </li>
+                </ul>
+                
+                <a href="{{ url_for('details', id=item.id) }}" class="btn btn-astro-accent w-100 mt-auto" style="border-radius: 8px;">Voir les détails</a>
             </div>
-        {% endif %}
-        
+        </div>
     </div>
+    {% else %}
+    <div class="col-12 text-center">
+        <p class="text-muted fst-italic">Aucun appareil photo n'est disponible pour le moment.</p>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}

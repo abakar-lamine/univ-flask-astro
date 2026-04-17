@@ -1,4 +1,3 @@
-/* Variables globales pour un thème "Nuit Étoilée" */
 :root {
     --astro-primary: #1e1b4b; /* Indigo très profond tiré de l'image */
     --astro-primary-light: #3730a3; /* Indigo plus clair pour les survols */
@@ -9,13 +8,12 @@
 
 body {
     background-color: var(--astro-bg);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif; 
     color: #1e293b;
 }
 
 /* --- LE HEADER AVEC IMAGE DE FOND --- */
 .custom-header {
-    /* Le dégradé rgba(..., 0.8) crée un calque sombre à 80% d'opacité sur l'image pour garantir la lisibilité */
     background: linear-gradient(rgba(10, 10, 25, 0.8), rgba(10, 10, 25, 0.8)), url('../img/bg-header.png') no-repeat center center;
     background-size: cover;
     box-shadow: 0 2px 15px rgba(0,0,0,0.5);
@@ -48,7 +46,12 @@ body {
     transform: translateY(-1px);
 }
 
-/* Cercle des initiales utilisateur */
+.navbar-nav .nav-link.active {
+    font-weight: 700 !important;
+    color: var(--astro-accent) !important;
+    /*border-bottom: 2px solid var(--astro-accent);*/
+}
+
 .user-initials-circle {
     width: 40px;
     height: 40px;
@@ -66,7 +69,6 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Bouton déconnexion */
 .btn-logout {
     border-radius: 10px;
     padding: 6px 12px;
@@ -83,7 +85,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Remplacement générique des boutons Bootstrap primaires pour coller au thème */
 .btn-primary {
     background-color: var(--astro-primary-light) !important;
     border-color: var(--astro-primary-light) !important;
@@ -94,9 +95,91 @@ body {
     border-color: var(--astro-primary) !important;
 }
 
-/* Alertes Flash */
 .alert {
     border: none;
     border-radius: 12px;
     box-shadow: var(--astro-card-shadow);
+}
+
+/* --- SECTION HERO (Page d'accueil) --- */
+.hero-section {
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), url('../img/bg-main.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+    color: white;
+    padding: 6rem 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-title {
+    font-weight: 800;
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e2e8f0; /* Gris très clair */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    margin-bottom: 2.5rem;
+}
+
+.btn-hero {
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-primary {
+    background-color: var(--astro-primary-light);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(55, 48, 163, 0.6);
+}
+
+.btn-hero-primary:hover {
+    background-color: var(--astro-primary);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.btn-hero-outline {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+.btn-hero-outline:hover {
+    background: white !important;
+    color: var(--astro-primary) !important; 
+    transform: translateY(-3px);
+}
+
+.btn-hero-outline:hover i {
+    color: var(--astro-primary) !important;
+}
+
+.btn-astro-accent {
+    color: var(--astro-primary-light);
+    border: 2px solid var(--astro-primary-light);
+    background-color: transparent;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-astro-accent:hover {
+    background-color: var(--astro-primary-light);
+    border-color: var(--astro-primary-light);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(55, 48, 163, 0.4);
 }
