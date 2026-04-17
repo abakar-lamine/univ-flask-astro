@@ -24,48 +24,47 @@ AstroSpace est une application web développée avec Flask permettant de répert
 
 Suivez ces étapes pour configurer et lancer le projet localement dans votre environnement :
 
-### 1. Démarrer le service de base de données
-Avant toute manipulation, assurez-vous que le serveur MariaDB est actif :
+### 1. Préparation de l'environnement de code
+
+1. **Clonez ce dépôt** sur votre machine locale.
+2. **Installez les dépendances** requises via le fichier prévu à cet effet :
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Démarrage des services
+Avant de manipuler les données, assurez-vous que le serveur MariaDB est actif :
+
 ```bash
 sudo service mariadb start
+```
+### 3. Configuration et Initialisation
 
-### 2. Mise en place de l'application
+1. **Configurez l'environnement :** Copiez le fichier `.env.example` et renommez-le en `.env`.
 
-    Clonez ce dépôt sur votre machine locale.
+2. **Renseignez vos accès :** Remplissez le fichier `.env` avec vos identifiants MariaDB locaux :
+   - `SECRET_KEY` : Mettez une chaîne de caractères aléatoire.
+   - `DATABASE_URL` : Mettez l'URL de votre base de données (ex: `mysql+pymysql://root:@127.0.0.1/astro`).
 
-    Installez les dépendances requises via le fichier prévu à cet effet :
-    Bash
+3. **Initialisez la base de données :** Exécutez le script suivant pour créer les tables et pré-remplir la base avec le matériel :
 
-pip install -r requirements.txt
+```bash
+python test_db.py
+```
 
-Configurez l'environnement : Copiez le fichier .env.example et renommez-le en .env.
+### 4. Lancement de l'application
+Lancez le serveur Flask :
+```bash
+python app.py
+```
 
-Renseignez vos accès : Remplissez le fichier .env avec vos identifiants MariaDB locaux :
+L'application sera alors accessible par défaut sur `http://127.0.0.1:5000`.
 
-    SECRET_KEY : Mettez une chaîne de caractères aléatoire (ex: ma_cle_super_secrete).
+### 📂 Structure du projet
 
-    DATABASE_URL : Mettez l'URL de votre base de données (ex: mysql+pymysql://root:@127.0.0.1/astro).
-
-Initialisez la base de données : Exécutez le script suivant pour créer les tables et pré-remplir la base avec le matériel (appareils, télescopes, photos) :
-Bash
-
-python seed.py
-
-Lancez le serveur :
-Bash
-
-    python app.py
-
-    L'application sera alors accessible par défaut sur http://127.0.0.1:5000.
-
-📂 Structure du projet
-
-    app.py : Logique principale du serveur (routes) et définition des modèles SQLAlchemy.
-
-    seed.py : Script d'injection des données de test.
-
-    static/ : Ressources statiques (images dans img/ et styles dans css/style.css).
-
-    templates/ : Ensemble des vues HTML propulsées par Jinja2.
-
-    .env.example : Modèle de configuration pour les variables d'environnement.
+   - `app.py` : Logique principale du serveur (routes) et définition des modèles SQLAlchemy.
+   - `test_db.py` : Script d'injection des données de test.
+   - `static/` : Ressources statiques (images dans `img/` et styles dans `css/style.css`).
+   - `templates/` : Ensemble des vues HTML propulsées par Jinja2.
+   - `.env.example` : Modèle de configuration pour les variables d'environnement.
