@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}Appareils Photo - AstroSpace{% endblock %}
+
+{% block content %}
+<div class="mb-4 text-center">
+    <h2 class="fw-bold" style="color: var(--astro-blue);">
+        <i class="bi bi-camera me-2"></i>Nos Appareils Photos
+    </h2>
+    <p class="text-muted">Découvrez notre sélection pour capturer le cosmos.</p>
+</div>
+
+{% set categories = ['Amateur', 'Amateur sérieux', 'Professionnel'] %}
+
+{% for cat in categories %}
+<div class="mb-5">
+    <h4 class="border-bottom pb-2 mb-3" style="color: var(--astro-dark);">Catégorie : {{ cat }}</h4>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        
+        {% set has_items = false %}
+        {% for item in items %}
+            {% if item.categorie == cat %}
+                {% set has_items = true %}
+                <div class="col">
+                    <div class="card h-100 border-0" style="box-shadow: var(--astro-card-shadow); border-radius: 12px;">
+                        <img src="{{ url_for('static', filename='img/' + item.image_file) }}" class="card-img-top" alt="{{ item.modele }}" style="height: 200px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;" onerror="this.src='https://via.placeholder.com/300x200?text=Pas+d%27image'">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">{{ item.marque }} - {{ item.modele }}</h5>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-calendar-event text-secondary me-2"></i>Sortie : {{ item.date_sortie }}</li>
+                                <li>
+                                    <i class="bi bi-star-fill text-warning me-2"></i>Score : 
+                                    {% for i in range(item.score) %}⭐{% endfor %}
+                                </li>
+                            </ul>
+                            <a href="{{ url_for('details', id=item.id) }}" class="btn btn-outline-primary w-100 mt-auto" style="border-radius: 8px;">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% if not has_items %}
+            <div class="col-12">
+                <p class="text-muted fst-italic">Aucun appareil dans cette catégorie pour le moment.</p>
+            </div>
+        {% endif %}
+        
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

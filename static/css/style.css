@@ -1,0 +1,102 @@
+/* Variables globales pour un thème "Nuit Étoilée" */
+:root {
+    --astro-primary: #1e1b4b; /* Indigo très profond tiré de l'image */
+    --astro-primary-light: #3730a3; /* Indigo plus clair pour les survols */
+    --astro-accent: #c7d2fe; /* Bleu étoilé clair pour les textes/icônes */
+    --astro-bg: #f8fafc;
+    --astro-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+body {
+    background-color: var(--astro-bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e293b;
+}
+
+/* --- LE HEADER AVEC IMAGE DE FOND --- */
+.custom-header {
+    /* Le dégradé rgba(..., 0.8) crée un calque sombre à 80% d'opacité sur l'image pour garantir la lisibilité */
+    background: linear-gradient(rgba(10, 10, 25, 0.8), rgba(10, 10, 25, 0.8)), url('../img/bg-header.png') no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+    padding: 0.8rem 1rem;
+    border-bottom: 2px solid rgba(199, 210, 254, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ffffff !important;
+    text-transform: uppercase;
+}
+
+.navbar-brand i {
+    font-size: 1.6rem;
+    color: var(--astro-accent);
+    filter: drop-shadow(0 0 5px rgba(199, 210, 254, 0.6));
+}
+
+.nav-link {
+    font-weight: 500;
+    margin-right: 10px;
+    color: rgba(255,255,255,0.85) !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--astro-accent) !important;
+    transform: translateY(-1px);
+}
+
+/* Cercle des initiales utilisateur */
+.user-initials-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--astro-primary), var(--astro-primary-light));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: 15px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(55, 48, 163, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Bouton déconnexion */
+.btn-logout {
+    border-radius: 10px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-color: rgba(255,255,255,0.3);
+}
+
+.btn-logout:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* Remplacement générique des boutons Bootstrap primaires pour coller au thème */
+.btn-primary {
+    background-color: var(--astro-primary-light) !important;
+    border-color: var(--astro-primary-light) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--astro-primary) !important;
+    border-color: var(--astro-primary) !important;
+}
+
+/* Alertes Flash */
+.alert {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--astro-card-shadow);
+}
